@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>USD/INR Exchange Rate Forecasting | RESULTS</title>
+	<link rel='icon' href="{{url_for('static',filename='titleicon.png')}}"/>
+	<header>
+		<div class="info">
+			<div id="brandname">
+				<h1 style="text-align: center">Exchange Rate Forecasting</h1>
+			</div>
+			<h3 style="text-align: center">USD/INR Exchange Rate Forecasting</h3>
+		</div>
+	</header>
+</head>
+
+<body>
+	<div class= "Main-img">
+		<p align="center">
+			<img src="{{url_for('static',filename='lineplot.png')}}" alt="Lineplot" height=80% width=80%>
+		</p>		
+	</div>
+
+	<div class = "n_days">
+		<form action="/predict" method="POST" style="text-align: center">
+  			<input type="radio" id="7" name="days" value="7">
+  			<label for="7">Predict for next 7 days</label>
+  			<input type="radio" id="15" name="days" value="15">
+  			<label for="15">Predict for next 15 days</label>
+  			<input type="radio" id="30" name="days" value="30">
+  			<label for="30">Predict for next 30 days</label><br><br>
+  			<input type="submit" class="btn-info" value="Predict">
+		</form>
+						
+	</div>
+
+	<div>
+		<header>
+			<h3 style="text-align: center">Future Predictions</h3>
+		</header>
+		
+		<div>
+			<table border="2px solid black" align="center">
+				<tr>
+					{% for header in headings %}
+					<th>{{header}}</th>
+					{% endfor %}
+				</tr>
+				{% for row in data %}
+				<tr>
+					{% for cell in row %}
+					<td>{{cell}}</td>
+					{% endfor %}
+				</tr>
+				{% endfor %}
+			</table>
+		</div>
+	</div>
+
+</body>
+</html>
+
+
